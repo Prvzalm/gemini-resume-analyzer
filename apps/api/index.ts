@@ -1,5 +1,6 @@
+import fs from "node:fs";
 import path from "node:path";
-import next from "next";
+import express from "express";
 import { loadEnv } from "@resume-analyzer/config";
 import { createApp } from "./src/app";
 
@@ -13,16 +14,24 @@ const shouldServeFrontend =
   process.env.VERCEL === "1";
 
 if (shouldServeFrontend) {
-  const dev = false; // Always production mode in serverless
-  const webAppDir = path.resolve(__dirname, "../web");
-  const nextApp = next({ dev, dir: webAppDir });
-  const handle = nextApp.getRequestHandler();
+  const frontendDir = resolveFrontendDir();
+  if (frontendDir) {
+    app.use(express.static(frontendDir));
+    app.get("*", (_req, res) => {
+      res.sendFile(path.join(frontendDir, "index.html"));
+    });
+  } else {
+    console.warn("⚠️ Frontend build not found for serverless function.");
+  }
+}
 
-  // Prepare Next.js (async initialization)
-  nextApp.prepare().then(() => {
-    // Catch-all route for Next.js
-    app.all("*", (req, res) => handle(req, res));
-  });
+function resolveFrontendDir() {
+  const candidates = [
+    path.resolve(__dirname, "public"),
+    path.resolve(process.cwd(), "apps/api/public"),
+    path.resolve(process.cwd(), "public"),
+  ];
+  return candidates.find((dir) => fs.existsSync(dir));
 }
 
 export default app;

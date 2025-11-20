@@ -7,8 +7,7 @@
       "config": {
         "includeFiles": [
           "apps/api/dist/**",
-          "apps/web/.next/**",
-          "apps/web/public/**",
+          "apps/api/public/**",
           "packages/*/dist/**"
         ]
       }

@@ -1,5 +1,6 @@
+import fs from "node:fs";
 import path from "node:path";
-import next from "next";
+import express from "express";
 import { loadEnv } from "@resume-analyzer/config";
 import { createApp } from "./app";
 
@@ -10,24 +11,29 @@ const port = Number(env.API_PORT ?? env.PORT ?? 4000);
 const shouldServeFrontend =
   process.env.SERVE_FRONTEND_FROM_API === "true" ||
   env.NODE_ENV === "production";
+const frontendDir = resolveFrontendDir();
 
-async function boot() {
-  if (shouldServeFrontend) {
-    const dev = env.NODE_ENV !== "production";
-    const webAppDir = path.resolve(__dirname, "../../web");
-    const nextApp = next({ dev, dir: webAppDir });
-    const handle = nextApp.getRequestHandler();
-    await nextApp.prepare();
-    app.all("*", (req, res) => handle(req, res));
-    console.log(`🖥️  Serving Next.js frontend from ${webAppDir}`);
-  }
-
-  app.listen(port, () => {
-    console.log(`🔌 Resume API listening on http://localhost:${port}`);
-  });
+function resolveFrontendDir() {
+  const candidates = [
+    path.resolve(__dirname, "../public"),
+    path.resolve(process.cwd(), "apps/api/public"),
+    path.resolve(process.cwd(), "public"),
+  ];
+  return candidates.find((dir) => fs.existsSync(dir));
 }
 
-boot().catch((error) => {
-  console.error("Failed to start server", error);
-  process.exit(1);
+if (shouldServeFrontend) {
+  if (frontendDir) {
+    app.use(express.static(frontendDir));
+    app.get("*", (_req, res) => {
+      res.sendFile(path.join(frontendDir, "index.html"));
+    });
+    console.log(`🖥️  Serving static frontend from ${frontendDir}`);
+  } else {
+    console.warn("⚠️ Frontend build not found. Static assets will not be served.");
+  }
+}
+
+app.listen(port, () => {
+  console.log(`🔌 Resume API listening on http://localhost:${port}`);
 });

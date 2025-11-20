@@ -3,6 +3,8 @@ node_modules
 out
 dist
 tmp
+/public/
+/apps/api/public/
 .env*
 !.env.example
 .DS_Store
