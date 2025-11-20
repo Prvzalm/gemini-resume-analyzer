@@ -7,7 +7,15 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "@resume-analyzer/config": ["packages/config/src/index"],
+      "@resume-analyzer/config/*": ["packages/config/src/*"],
+      "@resume-analyzer/core": ["packages/core/src/index"],
+      "@resume-analyzer/core/*": ["packages/core/src/*"],
+      "@resume-analyzer/ui": ["packages/ui/src/index"],
+      "@resume-analyzer/ui/*": ["packages/ui/src/*"]
+    }
   },
   "include": ["packages", "apps"],
   "exclude": ["node_modules", "dist"]
