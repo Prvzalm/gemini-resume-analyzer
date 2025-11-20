@@ -30,7 +30,9 @@ if (shouldServeFrontend) {
     });
     console.log(`🖥️  Serving static frontend from ${frontendDir}`);
   } else {
-    console.warn("⚠️ Frontend build not found. Static assets will not be served.");
+    console.warn(
+      "⚠️ Frontend build not found. Static assets will not be served."
+    );
   }
 }
 
