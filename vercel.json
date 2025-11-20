@@ -8,7 +8,5 @@
       "config": { "includeFiles": ["apps/api/src/**/*"] }
     }
   ],
-  "routes": [
-    { "src": "/api/(.*)", "dest": "/apps/api/api/index.ts" }
-  ]
+  "routes": [{ "src": "/api/(.*)", "dest": "/apps/api/api/index.ts" }]
 }
