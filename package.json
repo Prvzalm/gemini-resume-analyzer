@@ -15,7 +15,7 @@
     "build": "npm-run-all build:web build:api",
     "build:web": "npm run build --workspace apps/web",
     "build:api": "npm run build --workspace apps/api",
-    "vercel-build": "npm-run-all build:web",
+    "vercel-build": "npm run build",
     "lint": "npm-run-all lint:web lint:api",
     "lint:web": "npm run lint --workspace apps/web",
     "lint:api": "npm run lint --workspace apps/api",

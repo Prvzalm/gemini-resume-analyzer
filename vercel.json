@@ -11,6 +11,6 @@
       "config": { "includeFiles": ["apps/api/**/*"] }
     }
   ],
-  "routes": [{ "src": "/api/(.*)", "dest": "/apps/api/index.ts" }],
+  "routes": [{ "src": "/api/(.*)", "dest": "/apps/api/index" }],
   "regions": ["iad1"]
 }
