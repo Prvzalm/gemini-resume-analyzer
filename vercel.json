@@ -1,5 +1,8 @@
 {
   "version": 2,
+  "buildCommand": "npm install && npm run build",
+  "installCommand": "npm install",
+  "framework": null,
   "builds": [
     {
       "src": "apps/api/index.ts",
@@ -7,13 +10,12 @@
       "config": {
         "includeFiles": [
           "apps/api/dist/**",
-          "apps/api/src/**",
           "apps/web/.next/**",
-          "apps/web/public/**"
+          "apps/web/public/**",
+          "packages/**"
         ]
       }
     }
   ],
-  "routes": [{ "src": "/(.*)", "dest": "/apps/api/index" }],
-  "regions": ["iad1"]
+  "routes": [{ "src": "/(.*)", "dest": "/apps/api/index" }]
 }
