@@ -4,7 +4,13 @@
     "outDir": "dist",
     "rootDir": "src",
     "module": "CommonJS",
-    "moduleResolution": "Node"
+    "moduleResolution": "Node",
+    "paths": {
+      "@resume-analyzer/config": ["../../packages/config/dist/index"],
+      "@resume-analyzer/config/*": ["../../packages/config/dist/*"],
+      "@resume-analyzer/core": ["../../packages/core/dist/index"],
+      "@resume-analyzer/core/*": ["../../packages/core/dist/*"]
+    }
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]
