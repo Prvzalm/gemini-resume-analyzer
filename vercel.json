@@ -2,15 +2,18 @@
   "version": 2,
   "builds": [
     {
-      "src": "apps/web/package.json",
-      "use": "@vercel/next"
-    },
-    {
       "src": "apps/api/index.ts",
       "use": "@vercel/node",
-      "config": { "includeFiles": ["apps/api/**/*"] }
+      "config": {
+        "includeFiles": [
+          "apps/api/dist/**",
+          "apps/api/src/**",
+          "apps/web/.next/**",
+          "apps/web/public/**"
+        ]
+      }
     }
   ],
-  "routes": [{ "src": "/api/(.*)", "dest": "/apps/api/index" }],
+  "routes": [{ "src": "/(.*)", "dest": "/apps/api/index" }],
   "regions": ["iad1"]
 }
