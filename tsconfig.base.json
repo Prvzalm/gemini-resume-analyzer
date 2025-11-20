@@ -9,12 +9,12 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "@resume-analyzer/config": ["packages/config/src/index"],
-      "@resume-analyzer/config/*": ["packages/config/src/*"],
-      "@resume-analyzer/core": ["packages/core/src/index"],
-      "@resume-analyzer/core/*": ["packages/core/src/*"],
-      "@resume-analyzer/ui": ["packages/ui/src/index"],
-      "@resume-analyzer/ui/*": ["packages/ui/src/*"]
+      "@resume-analyzer/config": ["packages/config/dist/index"],
+      "@resume-analyzer/config/*": ["packages/config/dist/*"],
+      "@resume-analyzer/core": ["packages/core/dist/index"],
+      "@resume-analyzer/core/*": ["packages/core/dist/*"],
+      "@resume-analyzer/ui": ["packages/ui/dist/index"],
+      "@resume-analyzer/ui/*": ["packages/ui/dist/*"]
     }
   },
   "include": ["packages", "apps"],
