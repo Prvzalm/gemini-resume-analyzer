@@ -12,7 +12,7 @@
     "dev": "npm-run-all --parallel dev:web dev:api",
     "dev:web": "npm run dev --workspace apps/web",
     "dev:api": "npm run dev --workspace apps/api",
-    "build": "npm run build --workspace apps/web && npm run build --workspace apps/api",
+    "build": "npm run build --workspace packages/config && npm run build --workspace packages/core && npm run build --workspace packages/ui && npm run build --workspace apps/web && npm run build --workspace apps/api",
     "start": "npm run start --workspace apps/api",
     "lint": "npm-run-all lint:web lint:api",
     "lint:web": "npm run lint --workspace apps/web",
