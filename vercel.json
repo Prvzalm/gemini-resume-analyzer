@@ -1,8 +1,5 @@
 {
   "version": 2,
-  "buildCommand": "npm install && npm run build",
-  "installCommand": "npm install",
-  "framework": null,
   "builds": [
     {
       "src": "apps/api/index.ts",
@@ -12,7 +9,7 @@
           "apps/api/dist/**",
           "apps/web/.next/**",
           "apps/web/public/**",
-          "packages/**"
+          "packages/*/dist/**"
         ]
       }
     }
